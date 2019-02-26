@@ -43,27 +43,28 @@ object Main {
    * Exercise 3
    */
     
-    print("counChange = " + countChange(5,List(1,3,5)))
+    print("counChange = " + countChange(5,List(1,3)))
     
     def countChange(money: Int, coins: List[Int]): Int = {
-      var coef = List[Int]()
-      var sum:Int = 0
-      if(rest(money, coins, coef) == 0) {
-        for(i <- 0 to coins.size-1){
-          sum + coef(i)
-        }  
-      sum
-      }
-      else
-          sum
-    }
-    
-    def rest(money: Int, coins: List[Int], sum: Int): Int = {
+      var q1: Int = 0
+      var q2: Int = 0
+      var q3: Int = 0
+      
       for(i <- 0 to coins.size-1){
-       if(money  > coins(i)) rest(money - coins(i),coins, sum + 0)
-       if(money == coins(i)) sum + 1
-       if(money  < coins(i)) sum + 0
+       //println("i = " + i)
+       if(money  > coins(i)) {
+         q1 = countChange(money - coins(i),coins)
+         println("q1 = " + coins(i))
+       }
+       if(money == coins(i)) {
+         q2 = 1
+         println("q2 = " + coins(i))
+       }
+       if(money  < coins(i)) {
+         q3 = 0
+         //println("q3 = " + coins(i))
+       }
       }
-      sum
+      q1 + q2 + q3
     }
   }
