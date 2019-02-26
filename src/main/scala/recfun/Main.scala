@@ -23,13 +23,11 @@ object Main {
    * Exercise 2
    */
     
-    println("balance = " + balance("(just an example".toList))
-    println("norm    = " + norm(0,"(just an example))".toList))
+    println("balance = " + balance("(just an example)".toList))
+    //println("norm    = " + norm(0,"(just an example))".toList))
     
     def balance(chars: List[Char]): Boolean = {
-      if(norm(0,chars) != 0) false
-      else 
-        true
+      norm(0,chars) == 0
     }
     
     def norm(N: Int, chars: List[Char]): Int = chars match{
@@ -43,28 +41,16 @@ object Main {
    * Exercise 3
    */
     
-    print("counChange = " + countChange(5,List(1,3)))
-    
-    def countChange(money: Int, coins: List[Int]): Int = {
-      var q1: Int = 0
-      var q2: Int = 0
-      var q3: Int = 0
-      
-      for(i <- 0 to coins.size-1){
-       //println("i = " + i)
-       if(money  > coins(i)) {
-         q1 = countChange(money - coins(i),coins)
-         println("q1 = " + coins(i))
-       }
-       if(money == coins(i)) {
-         q2 = 1
-         println("q2 = " + coins(i))
-       }
-       if(money  < coins(i)) {
-         q3 = 0
-         //println("q3 = " + coins(i))
-       }
-      }
-      q1 + q2 + q3
-    }
-  }
+    //println("countChange = " + countChange(5,List(1,3)))
+        
+  def countChange(money: Int, coins: List[Int]): Int = {
+  if(money == 0)
+    1
+  else if(money > 0 && !coins.isEmpty)
+    countChange(money - coins.head, coins) + countChange(money, coins.tail)
+  else
+    0
+}
+}
+
+
